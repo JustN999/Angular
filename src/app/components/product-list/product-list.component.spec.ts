@@ -9,6 +9,7 @@ describe('ProductListComponent', () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
 
+  // tslint:disable-next-line: deprecation
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductListComponent ]

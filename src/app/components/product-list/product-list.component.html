@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="row mb-2">
       <label class="col-2">Filter:</label>
-      <input type="text" class="col-3" [(ngModel)]='filterValue' (input)= 'filter()'>
+      <input type="text" class="col-3" [(ngModel)]='listFilter' >
     <div class="col-7"></div>
   </div>
   <div class="row mb-4">
@@ -22,21 +22,13 @@
         <th>5 Star Rating</th>
       </tr>
       <tr *ngFor='let p of products'>
-        <td><img src="{{p.imageUrl}}" width="50px"></td>
+        <td><img [src]='p.imageUrl' width="50px" [title]='p.productName|uppercase'></td>
         <td>{{p.productName}}</td>
           <td>{{p.productCode}}</td>
           <td>{{p.releaseDate}}</td>
-          <td>{{p.price}}</td>
+          <td>{{p.price|currency}}</td>
           <td>
-            <div class="crop" [style.width.px]="p.starRating*90/5" title="rating">
-              <div style="width: 90px">
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
-            </div>
+            <app-star [rating] = "p.starRating" ></app-star>
           </td>
       </tr>
     </thead>

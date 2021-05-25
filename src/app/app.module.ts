@@ -5,12 +5,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { HeaderComponent } from './header/header.component';
+import { StarComponent } from './star/star.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     ProductListComponent,
-    HeaderComponent
+    StarComponent
+
   ],
   imports: [
     BrowserModule,

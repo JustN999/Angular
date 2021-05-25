@@ -11,7 +11,17 @@ import { Product } from 'src/app/common/product';
 
 
 export class ProductListComponent implements OnInit {
+  static products: any;
+  static Product: any;
   constructor() { }
+  get listFilter(): string{
+    return this._listFilter;
+  }
+  set listFilter(value: string){
+    this._listFilter = value;
+    this.products = this.listFilter ?
+      this.performFilter(this.listFilter) : this.products;
+  }
 
   products: Product[] = [
     {
@@ -65,14 +75,20 @@ export class ProductListComponent implements OnInit {
       imageUrl: 'http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png'
     }
   ];
-  filterValue: string = ''; // ánh xạ tới textbox search
+  // tslint:disable-next-line: member-ordering
+  // tslint:disable-next-line: variable-name
+  _listFilter!: string;
 
   // tslint:disable-next-line: typedef
-  ngOnInit() {
+  ngOnInit(): void {
     this.products = this.products;
   }
   // tslint:disable-next-line: typedef
-  filter(){
-    this.products = this.products.filter(p => p.productName.includes(this.filterValue));
+  performFilter(filterBy: string): Product[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((products: Product) =>
+        products.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 }
+
+
